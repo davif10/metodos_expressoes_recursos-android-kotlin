@@ -1,0 +1,2 @@
+rootProject.name = "Metodos Expressoes e Recursos"
+include ':app'
