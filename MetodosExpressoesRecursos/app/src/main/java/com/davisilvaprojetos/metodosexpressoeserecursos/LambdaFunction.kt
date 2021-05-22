@@ -16,7 +16,7 @@ class LambdaFunction {
         }
     }
 
-    fun somando(num1: Int, num2: Int):Int { return num1+num2 }
+    fun somando(num1: Int, num2: Int, op: (Int, Int) -> Int): Int { return op(num1,num2) }
 
 
 }
