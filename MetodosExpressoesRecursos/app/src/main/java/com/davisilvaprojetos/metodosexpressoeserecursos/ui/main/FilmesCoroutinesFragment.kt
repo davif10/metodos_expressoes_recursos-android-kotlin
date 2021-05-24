@@ -37,7 +37,7 @@ class FilmesCoroutinesFragment : Fragment() {
 
         })
 
-        viewModel.getFilmes()
+        viewModel.getFilmesCoroutines()
 
     }
 
