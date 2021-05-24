@@ -1,5 +1,6 @@
 package com.davisilvaprojetos.metodosexpressoeserecursos
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import kotlinx.android.synthetic.main.activity_main.*
@@ -41,6 +42,14 @@ class MainActivity : AppCompatActivity() {
             is SealedClass.Success -> {println("Deu Sucesso")}
             is SealedClass.Error -> {println("Deu erro!")}
         }
+
+        buttonFilmes.setOnClickListener {
+            //Chamando outra tela
+            val i = Intent(this, FilmesCoroutinesActivity::class.java)
+            startActivity(i)
+        }
+
+
     }
 
     fun operator(x: Int, y: Int, op: (Int, Int) -> Int): Int {
