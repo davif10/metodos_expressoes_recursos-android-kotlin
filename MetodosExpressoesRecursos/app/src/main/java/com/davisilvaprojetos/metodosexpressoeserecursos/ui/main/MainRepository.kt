@@ -4,7 +4,7 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.withContext
 
-class MainRepository {
+open class MainRepository {
 
     fun getFilmes(callback: (filmes: List<Filme>) -> Unit){
          Thread(Runnable{
