@@ -4,9 +4,10 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.withContext
 
-open class MainRepository {
+    open class MainRepository() {
 
-    fun getFilmes(callback: (filmes: List<Filme>) -> Unit){
+
+        fun getFilmes(callback: (filmes: List<Filme>) -> Unit){
          Thread(Runnable{
             Thread.sleep(3000)
             callback.invoke(

@@ -2,6 +2,7 @@ package com.davisilvaprojetos.metodosexpressoeserecursos
 
 import android.arch.core.executor.testing.InstantTaskExecutorRule
 import androidx.lifecycle.Observer
+import androidx.lifecycle.ViewModel
 import com.davisilvaprojetos.metodosexpressoeserecursos.ui.main.Filme
 import com.davisilvaprojetos.metodosexpressoeserecursos.ui.main.MainRepository
 import com.davisilvaprojetos.metodosexpressoeserecursos.ui.main.MainViewModel
@@ -37,4 +38,6 @@ class MainViewModelTest {
         viewModel.getFilmesCoroutines()
         //Verificacao
     }
+
 }
+
