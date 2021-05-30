@@ -37,6 +37,7 @@ class LaunchCoroutines {
     fun testThree() = runBlocking {
         doWorld()
         println("Finish testThree")
+        println("-------------------------------------")
     }
 
     fun testFour() = runBlocking {
@@ -47,6 +48,7 @@ class LaunchCoroutines {
         println("Hello")
         job.join()//Espera até que a Coroutine seja concluída
         println("FINISH")
+        println("-------------------------------------")
     }
 
     fun testFive() = runBlocking {
@@ -57,6 +59,68 @@ class LaunchCoroutines {
             }
         }
     }
+
+    fun testSix() = runBlocking {
+        val job  = launch {
+            repeat(1000){
+                println("JOB: Dormindo $it ...")
+                delay(500L)
+            }
+        }
+
+        delay(1300L)
+        println("Main: Cansei de esperar!")
+        job.cancel() //Cancela  o Job
+        job.join() //Aguarda o Job ser completado
+        println("main: Agora posso sair")
+        println("-------------------------------------")
+    }
+
+    //Tornando o código de computação cancelável
+    fun testSeven() = runBlocking {
+        val startTime = System.currentTimeMillis()
+        val job = launch (Dispatchers.Default){
+            var nextPrintTime = startTime
+            var i = 0
+            while(isActive){
+                // loop de computação cancelável
+                // imprime uma mensagem duas vezes por segundo
+                if(System.currentTimeMillis() >= nextPrintTime){
+                    println("job: Dormindo ${i++} ...")
+                    nextPrintTime += 500L
+                }
+            }
+        }
+        delay(1300L)
+        println("Main: Cansei de esperar!")
+        job.cancelAndJoin() //Cancela o Job e espera completar
+        println("Main: Agora posso sair")
+        println("-------------------------------------")
+    }
+
+    fun testEight() = runBlocking {
+        val job  = launch {
+            try {
+                repeat(1000){
+                    println("JOB: Dormindo $it ...")
+                    delay(500L)
+                }
+
+            }finally {
+                println("job: Correndo finally")
+            }
+
+        }
+
+        delay(1300L)
+        println("Main: Cansei de esperar!")
+        job.cancelAndJoin()
+        println("main: Agora posso sair")
+        println("-------------------------------------")
+    }
+
+
+    //Funções suspensas
 
     suspend fun function1(): String
     {

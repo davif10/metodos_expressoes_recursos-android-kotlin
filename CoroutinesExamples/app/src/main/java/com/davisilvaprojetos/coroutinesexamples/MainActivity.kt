@@ -19,6 +19,11 @@ class MainActivity : AppCompatActivity() {
         lc.testThree()
         lc.testFour()
         lc.testFive()
+
+        //Utilizando cancelamento de uma Coroutine
+        lc.testSix()
+        lc.testSeven()
+        lc.testEight()
     }
 
 
