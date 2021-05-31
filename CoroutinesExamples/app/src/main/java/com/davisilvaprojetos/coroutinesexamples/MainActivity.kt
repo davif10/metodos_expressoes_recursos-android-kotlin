@@ -13,7 +13,8 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        val lc = LaunchCoroutines()
+        /*val lc = LaunchCoroutines()
+        //Algumas formas de utilização da Coroutine Launch
         lc.testOne()
         lc.testTwo()
         lc.testThree()
@@ -24,6 +25,21 @@ class MainActivity : AppCompatActivity() {
         lc.testSix()
         lc.testSeven()
         lc.testEight()
+
+        //Tempo limite
+        lc.testNine() */
+
+        /*
+        //Compondo funções de suspensão
+        val cs = ComposingSuspending()
+        cs.testOne() //Medir tempo da execução
+        cs.testTwo() //Medir tempo usando async
+        cs.testThree() //Utilizando Lazy
+        cs.testFour()// Utilizando async fora da coroutina
+        cs.testFive() // Simultaneidade estruturada com async*/
+
+        val ac = AsyncCoroutines()
+        ac.GFG()
     }
 
 

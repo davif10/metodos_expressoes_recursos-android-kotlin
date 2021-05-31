@@ -4,7 +4,11 @@ import android.util.Log
 import kotlinx.coroutines.*
 
 class LaunchCoroutines {
-
+    /*
+    O launch não bloqueará o segmento principal, mas, por outro lado,
+     a execução da parte restante do código não vai esperar pelo resultado
+      de lançamento, já que o lançamento não é uma chamada suspensa.
+     */
     fun testOne() {
         var resultOne = "Android"
         var resultTwo = "Kotlin"
@@ -107,7 +111,12 @@ class LaunchCoroutines {
                 }
 
             }finally {
-                println("job: Correndo finally")
+                withContext(NonCancellable){
+                    println("job: Correndo finally")
+                    delay(1000L)
+                    println("Adiado 1 segundo porque eu sou incancelável")
+                }
+
             }
 
         }
@@ -117,6 +126,17 @@ class LaunchCoroutines {
         job.cancelAndJoin()
         println("main: Agora posso sair")
         println("-------------------------------------")
+    }
+
+    fun testNine() = runBlocking {
+        val result = withTimeoutOrNull(1300L) {
+            repeat(1000) { i ->
+                println("Dormindo $i ...")
+                delay(500L)
+            }
+            "Done" // será cancelado antes de produzir este resultado
+        }
+        println("Result is $result")
     }
 
 
