@@ -11,35 +11,27 @@ import com.davisilvaprojetos.newsapphilt.data.repository.NewsFANApiDataSource
 import com.davisilvaprojetos.newsapphilt.data.repository.NewsDbDataSource
 import com.davisilvaprojetos.newsapphilt.data.repository.NewsRepository
 import com.davisilvaprojetos.newsapphilt.R
+import com.davisilvaprojetos.newsapphilt.data.WebApiAccess
+import com.davisilvaprojetos.newsapphilt.data.repository.NewsRetrofitApiDataSource
+import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.android.synthetic.main.main_fragment.*
 
+@AndroidEntryPoint
 class NewsFragment : Fragment(R.layout.main_fragment) {
+    private val viewModelHilt: NewsViewModel by viewModels()
 
-    private val viewModel by viewModels<NewsViewModel> {
-        object : ViewModelProvider.Factory {
-            override fun <T : ViewModel?> create(modelClass: Class<T>): T {
-                val newsDbDataSource = NewsDbDataSource()
-                //val newsApiDataSource = NewsApiDataSource(WebApiAccess.newsApi)
-                val newsApiDataSource = NewsFANApiDataSource()
-                val newsRepository =
-                    NewsRepository(requireContext(), newsDbDataSource, newsApiDataSource)
-
-                return NewsViewModel(newsRepository) as T
-            }
-        }
-    }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        viewModel.articlesEvent.observe(viewLifecycleOwner, Observer {
+        viewModelHilt.articlesEvent.observe(viewLifecycleOwner, Observer {
             with(recyclerArticles) {
                 setHasFixedSize(true)
                 adapter = NewsAdapter(it)
             }
         })
 
-        viewModel.getNews()
+        viewModelHilt.getNews()
     }
 
 }

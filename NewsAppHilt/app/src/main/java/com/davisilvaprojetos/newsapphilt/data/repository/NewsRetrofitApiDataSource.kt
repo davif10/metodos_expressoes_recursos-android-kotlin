@@ -2,9 +2,10 @@ package com.davisilvaprojetos.newsapphilt.data.repository
 
 import com.davisilvaprojetos.newsapphilt.data.NewsApiClient
 import com.davisilvaprojetos.newsapphilt.data.model.NewsResult
-//import com.haroldadmin.cnradapter.NetworkResponse
-/*
-class NewsRetrofitApiDataSource(
+import com.haroldadmin.cnradapter.NetworkResponse
+import javax.inject.Inject
+
+class NewsRetrofitApiDataSource @Inject constructor(
     private val newsApiClient: NewsApiClient
 ) : NewsApiDataSource {
 
@@ -20,4 +21,4 @@ class NewsRetrofitApiDataSource(
             else -> NewsResult.UnknownError("Unknown error")
         }
     }
-}*/
+}

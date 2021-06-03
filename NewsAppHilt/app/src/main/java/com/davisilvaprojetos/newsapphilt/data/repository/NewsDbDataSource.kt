@@ -1,4 +1,7 @@
 package com.davisilvaprojetos.newsapphilt.data.repository
 
-class NewsDbDataSource {
+import javax.inject.Inject
+
+
+class NewsDbDataSource @Inject constructor(){
 }
